@@ -1,6 +1,13 @@
 # textify
 A Simple Text Cleaning and Normalization Package For NLP
 
+#### Problem
++ unstructured and untidy text data
++ repetition of the same code for every text preprocessing
+
+#### Solution
++ convert the already known solution for cleaning text into a reuseable package
+
 
 #### Installation
 ```bash
@@ -46,9 +53,16 @@ pip install textify
 >>> docx.extract_emails()
 ```
 
+
+### More Features To Add
++ lemmatization
++ currency normalizer
+
+
 #### By 
 + Jesse E.Agbe(JCharis)
 + Jesus Saves @JCharisTech
+
 
 
 #### NB
