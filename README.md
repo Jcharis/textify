@@ -1,6 +1,10 @@
 # textify
 A Simple Text Cleaning and Normalization Package For NLP
 
+[![Build Status](https://travis-ci.org/Jcharis/textify.svg?branch=master)](https://travis-ci.org/Jcharis/textify)
+[![GitHub license](https://img.shields.io/github/license/Jcharis/textify)](https://github.com/Jcharis/textify/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/Jcharis/textify)](https://github.com/Jcharis/textify/issues)
+
 #### Problem
 + unstructured and untidy text data
 + repetition of the same code for every text preprocessing
