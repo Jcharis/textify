@@ -5,6 +5,14 @@ EMAIL_REGEX = re.compile(r"[\w\.-]+@[\w\.-]+")
 PHONE_REGEX = re.compile(r"[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]")
 NUMBERS_REGEX = re.compile(r"\d+")
 SPECIAL_CHARACTERS_REGEX = re.compile(r"[^A-Za-z0-9 ]+")
+EMOJI_REGEX = re.compile("["
+                       u"\U0001F600-\U0001F64F"  # emoticons
+                       u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                       u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                       u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                       u"\U00002702-\U000027B0"
+                       u"\U000024C2-\U0001F251"
+                       "]+", flags=re.UNICODE)
 
 CURRENCIES = {
 	"$": "USD",
@@ -59,6 +67,10 @@ class TextCleaner(object):
 		result = re.sub(SPECIAL_CHARACTERS_REGEX,"",self.text)
 		return result
 
+	def remove_emojis(self):
+	   result = re.sub(EMOJI_REGEX,"",self.text)
+	   return result
+
 	def replace_emails(self,replace_with="<EMAIL>"):
 		result = re.sub(EMAIL_REGEX,replace_with,self.text)
 		return result
@@ -81,7 +93,8 @@ class TextCleaner(object):
 			email_result = re.sub(EMAIL_REGEX,"",self.text)
 			phone_result = re.sub(PHONE_REGEX,"",email_result)
 			number_result = re.sub(NUMBERS_REGEX,"",phone_result)
-			special_char_result = re.sub(SPECIAL_CHARACTERS_REGEX,"",number_result)
+			emoji_result = re.sub(EMOJI_REGEX,"",number_result)
+			special_char_result = re.sub(SPECIAL_CHARACTERS_REGEX,"",emoji_result)
 			final_result = special_char_result.lower()
 			
 		else:
@@ -114,5 +127,9 @@ class TextExtractor(TextCleaner):
 	def extract_numbers(self):
 		match = re.findall(NUMBERS_REGEX,self.text)
 		return match
+
+	def extract_emojis(self):
+	   match = re.findall(EMOJI_REGEX,self.text)
+	   return match
 
 
